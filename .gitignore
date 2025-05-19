@@ -1,0 +1,44 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Environment directories
+.env
+.venv/
+env/
+ENV/
+pythonenv/
+.pythonlibs/
+
+# Replit package manager
+.upm/
+
+# IDEs and editors
+.vscode/
+.idea/
+*.sw?
+*~
+
+# Configuration and secrets
+config.py
+secrets.py
+.env
+
+# Logs and reports
+*.log
+coverage.xml
+htmlcov/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# System files
+.DS_Store
+Thumbs.db

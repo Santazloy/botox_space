@@ -11,7 +11,7 @@ VIDEO_FILE_ID = "BAACAgIAAxkBAAIBP2gnFMWOhb7-RhWVEyc8n0h1oasMAALJbAACxy85SUmQFGc
 NEW_PRICE_LINE_TOTAL_WIDTH = 48
 MAX_SERVICE_NAME_LEN = 30
 PRICE_KEYWORDS = [
-    "прайс", "вартість", "вартіст", "вартіс", "варті", "прай", "ціна", "цін",
+    "прайс", "вартість", "вартіст", "вартіс", "варті", "Послуги", "прай", "ціна", "цін", "процедури", "послуги",
     "коштуе", "коштує", "коштуют"
 ]
 BOOKING_KEYWORDS_UA = ["забронювати", "записатися", "бронювання", "запис"]
