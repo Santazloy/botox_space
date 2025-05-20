@@ -8,6 +8,8 @@ packages = ["cacert", "gdb", "gitFull", "glibcLocales", "gmp", "libcxx", "libxcr
 [deployment]
 run = ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port 3000"]
 build = ["sh", "-c", "pip install --upgrade pip && pip install -r requirements.txt"]
+deploymentTarget = "gce"
+ignorePorts = true
 
 [[ports]]
 localPort = 3000
