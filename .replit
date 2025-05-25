@@ -6,7 +6,7 @@ channel = "stable-24_05"
 packages = ["cacert", "gdb", "gitFull", "glibcLocales", "gmp", "libcxx", "libxcrypt", "llvm", "pkg-config", "postgresql", "xsimd", "zeromq"]
 
 [deployment]
-run = ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port 3000"]
+run = ["sh", "-c", "python main.py "]
 build = ["sh", "-c", "pip install --upgrade pip && pip install -r requirements.txt"]
 deploymentTarget = "gce"
 ignorePorts = true
