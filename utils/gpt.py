@@ -1,3 +1,4 @@
+# utils/gpt.py
 import openai
 import db  # для history
 from config import OPENAI_API_KEY, SYSTEM_PROMPT_UA
