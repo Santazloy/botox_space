@@ -5,12 +5,10 @@ RUN apt-get update \
     && apt-get install -y ffmpeg \
     && rm -rf /var/lib/apt/lists/*
 
-# Копируем зависимые файлы и ставим poetry
+# Копируем зависимости и ставим через pip
 WORKDIR /app
-COPY pyproject.toml poetry.lock ./
-RUN pip install --no-cache-dir poetry \
-    && poetry config virtualenvs.create false \
-    && poetry install --no-dev --no-interaction --no-ansi
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Копируем весь код
 COPY . .
