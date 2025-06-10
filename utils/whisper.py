@@ -15,10 +15,12 @@ async def transcribe_with_gpt4o(filename: str) -> str:
     """
     openai.api_key = OPENAI_API_KEY
 
+    # Создание временного WAV-файла
+    wav_temp = tempfile.NamedTemporaryFile(suffix='.wav', delete=False)
+    wav_path = wav_temp.name
+    wav_temp.close()
+
     # Конвертация OGG -> WAV
-    wav_file = tempfile.NamedTemporaryFile(suffix='.wav', delete=False)
-    wav_path = wav_file.name
-    wav_file.close()
     try:
         subprocess.run([
             FFMPEG_CMD,
@@ -30,10 +32,15 @@ async def transcribe_with_gpt4o(filename: str) -> str:
         ], check=True)
     except Exception as e:
         logging.exception(f"FFmpeg conversion failed: {e}")
+        try:
+            os.remove(wav_path)
+        except OSError:
+            pass
         return ""
 
-    # Попытки транскрипции whisper-1 с экспоненциальным бэкоффом
+    text = ""
     delay = 1
+    # Попытки транскрипции
     for attempt in range(5):
         try:
             with open(wav_path, 'rb') as f:
@@ -42,17 +49,21 @@ async def transcribe_with_gpt4o(filename: str) -> str:
                     file=f,
                     language="uk"
                 )
-            return resp.get('text', '').strip()
+            text = resp.get('text', '').strip()
+            if text:
+                break
         except Exception as e:
             logging.warning(f"Transcription attempt {attempt+1} failed: {e}")
             await asyncio.sleep(delay)
             delay *= 2
 
-    logging.error("All transcription attempts failed.")
-    return ""
+    if not text:
+        logging.error("All transcription attempts failed.")
 
-    finally:
-        try:
-            os.remove(wav_path)
-        except OSError:
-            pass
+    # Удаляем временный WAV-файл
+    try:
+        os.remove(wav_path)
+    except OSError:
+        pass
+
+    return text
