@@ -1,24 +1,25 @@
-# config.py
+from dotenv import load_dotenv
+load_dotenv()
 
 import os
 
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-FFMPEG_CMD = os.getenv("FFMPEG_CMD", "ffmpeg")
+FFMPEG_CMD = os.getenv("FFMPEG_PATH", "ffmpeg")
 TTS_API_KEY = os.getenv("TTS_API_KEY")
 TTS_API_ENDPOINT = os.getenv("TTS_API_ENDPOINT")
 VIDEO_FILE_ID = "BAACAgIAAxkBAAIBP2gnFMWOhb7-RhWVEyc8n0h1oasMAALJbAACxy85SUmQFGcM0dDyNgQ"
 
-# Для утилит price.py
+# Для утиліт price.py
 NEW_PRICE_LINE_TOTAL_WIDTH = 48
 MAX_SERVICE_NAME_LEN = 30
 PRICE_KEYWORDS = [
-    "прайс", "вартість", "вартіст", "вартіс", "варті", "Послуги", "прай",
+    "прайс", "вартість", "вартіст", "вартіс", "варті", "прай",
     "ціна", "цін", "процедури", "послуги", "коштуе", "коштує", "коштуют"
 ]
 BOOKING_KEYWORDS_UA = ["забронювати", "записатися", "бронювання", "запис"]
-# utils/gpt.py
 
+# Системний prompt для утиліт GPT
 SYSTEM_PROMPT_UA = (
     "Ти — Оксана, адміністратор косметологічного центру «Botox Space» у Львові. "
     "Ти чудово знаєш все про косметологію, ін'єкції, догляд за шкірою, епіляцію, масаж тощо. "

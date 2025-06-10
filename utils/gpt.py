@@ -1,9 +1,10 @@
-# utils/gpt.py
+from dotenv import load_dotenv
+load_dotenv()
+
 import openai
 import db  # для history
 from config import OPENAI_API_KEY, SYSTEM_PROMPT_UA
 from data.cosmetics_sections import SUBGROUP_DEFINITIONS
-
 
 # Системний prompt для косметологічного центру (Оксана)
 # Визначений у config.py як константа SYSTEM_PROMPT_UA
