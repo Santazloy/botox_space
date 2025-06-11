@@ -24,7 +24,7 @@ pythonenv/
 *~
 
 # Configuration and secrets
-config.py
+
 secrets.py
 .env
 
